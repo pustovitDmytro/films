@@ -1,27 +1,26 @@
 /**
  * Created by pusti on 06.08.2017.
  */
-const initColumns = [
+const columns = [
   {
     name: "Column A",
     id: Date.now(),
     cards: [
       {
         name: "card 1",
-        id: Date.now(),
+        id: Date.now()+1,
+      },
+      {
+        name: "card 2",
+        id: Date.now()+2,
       }
     ]
   }
 ];
 
-export default function setLocale() {
-  return (dispatch) => {
-    const columns = initColumns;
-    dispatch({
-      type: 'COLUMNS',
-      payload: {
-        columns,
-      },
-    });
-  }
-}
+const init = () => ({
+  type: 'INIT_COLUMNS',
+  columns,
+});
+
+export default init;
