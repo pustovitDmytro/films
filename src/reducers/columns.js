@@ -18,19 +18,19 @@ const renameCard = (columns, {name,colId,cardId})=>{
     return columns.filter(item=>true);
 };
 const moveCardInner = (columns, {colId, source,target})=>{
-    let cards = columns.find(x => x.id == colId).cards;
-    const sourceCard = cards.find(x => x.id == source);
-    const targetCard = (target==0)?0:cards.map(value => value.id).indexOf(target) +1;
-    cards.splice(targetCard,0,sourceCard);
-    cards = cards.filter((item,i) => item.id!==source||i===targetCard);
+    let col = columns.find(x => x.id == colId);
+    const sourceCard = col.cards.find(x => x.id == source);
+    const targetCard = (target==0)?0:col.cards.map(value => value.id).indexOf(target) +1;
+    col.cards.splice(targetCard,0,sourceCard);
+    col.cards = col.cards.filter((item,i) => item.id!==source || i===targetCard);
     return columns.filter(item=>true);
 };
 const moveCardOuter = (columns, {colId,source,target})=>{
-    let cards = columns.find(x => x.id == colId).cards;
-    const sourceCard = cards.find(x => x.id == source);
-    let targetColumn =columns.find(x => x.id == target);
+    let col = columns.find(x => x.id == colId);
+    const sourceCard = col.cards.find(x => x.id === source);
+    let targetColumn = columns.find(x => x.id === target);
     targetColumn.cards.push(sourceCard);
-    cards = cards.filter((item) => item.id!==source);
+    col.cards = col.cards.filter((item) => item.id!==source);
     return columns.filter(item=>true);
 };
 

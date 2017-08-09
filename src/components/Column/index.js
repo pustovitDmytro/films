@@ -56,15 +56,17 @@ class Column extends React.Component {
     render() {
         const {name, id, children,connectDragSource, isDragging } = this.props;
         return connectDragSource(
-            <div>
+            <div className={s.column}>
+                <div className={s.header}>
                 {(!this.state.edit)
                     ? <h3 className={s.title}>{name}</h3>
                     : <Input func={renameColumn} placeholder="Input new name.." params={{id: id}}/>
                 }
-                <nav className={s.toolbar}>
-                    <button className={cx(s.button, s.delete)} onClick={this.onDelete}/>
+                <nav>
                     <button className={cx(s.button, s.edit)} onClick={this.onRename}/>
+                    <button className={cx(s.button, s.delete)} onClick={this.onDelete}/>
                 </nav>
+                </div>
                 {
                     children
                 }

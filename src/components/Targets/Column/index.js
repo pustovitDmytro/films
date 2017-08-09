@@ -4,7 +4,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
-import s from './ColumnTarget.scss';
+import s from './Column.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(s);
 
 const columnTarget = {
     drop(props, monitor) {
@@ -20,8 +22,12 @@ function collect(connect, monitor) {
     };
 }
 
-const Target = ({column, connectDropTarget, isOver}) => connectDropTarget(
-    <div className={s.columnTarget}></div>
+const Target = ({connectDropTarget, isOver}) => connectDropTarget(
+    <div className={cx({active: isOver, disabled: !isOver})}>
+        {
+            console.log("isOver",isOver)
+        }
+    </div>
 );
 
 Target.propTypes = {

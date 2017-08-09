@@ -10,7 +10,10 @@ import AddColumn from '../AddColumn';
 import s from './Desk.scss';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import ColumnTarget from '../Targets/ColumnTarget';
+import ColumnTarget from '../Targets/Column';
+import CardInner from '../Targets/CardInner';
+import CardOuter from '../Targets/CardOuter';
+
 
 const Desk = ({columns}) => (
     <div className={s.container}>
@@ -18,13 +21,19 @@ const Desk = ({columns}) => (
         {
             columns.map(elem =>
             <div key={elem.id} className={s.column}>
-                <Column  name={elem.name} id={elem.id}>
+                <CardOuter colId={elem.id}>
+                <Column name={elem.name} id={elem.id}>
+                    <CardInner colId={elem.id} cardId={0}/>
                     {
                         elem.cards.map(card =>
-                            <Card key={card.id} name={card.name}/>
+                        <div key={card.id}>
+                            <Card  name={card.name} colId={elem.id} cardId={card.id}/>
+                            <CardInner colId={elem.id} cardId={card.id}/>
+                        </div>
                         )
                     }
                 </Column>
+                    </CardOuter>
                 <ColumnTarget column={elem.id}/>
             </div>
             )

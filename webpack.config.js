@@ -25,6 +25,11 @@ const common = (PATHS,isDebug) => merge([
             hot: true,
             https: false
         },
+        resolve: {
+            alias: {
+                styles: PATHS.build
+            }
+        },
         plugins: [
             new CleanWebpackPlugin(
                 [PATHS.build],

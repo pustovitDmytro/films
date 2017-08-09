@@ -6,6 +6,7 @@
  */
 import React from 'react';
 import { connect } from 'react-redux';
+import s from './Input.scss';
 
 class AddItem extends React.Component {
     constructor(props) {
@@ -32,8 +33,9 @@ class AddItem extends React.Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form className={s.form} onSubmit={this.handleSubmit}>
                     <input
+                        className={s.text}
                         type="text"
                         placeholder={this.props.placeholder}
                         value={this.state.name}

@@ -1,5 +1,8 @@
+@import "../styles.scss";
+
 .container{
   display:flex;
+  padding: 50px;
 }
 .columnTarget{
   width: 100px;

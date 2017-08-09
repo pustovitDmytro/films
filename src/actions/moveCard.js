@@ -2,7 +2,7 @@
  * Created by pusti on 08.08.2017.
  */
 const moveCardInner = (colId, source, target ) => ({
-    type: 'MOVE_CARD_OUTER',
+    type: 'MOVE_CARD_INNER',
     data: {
         source,
         target,
@@ -10,7 +10,7 @@ const moveCardInner = (colId, source, target ) => ({
     },
 });
 const moveCardOuter = (colId, source, target ) => ({
-    type: 'MOVE_CARD_INNER',
+    type: 'MOVE_CARD_OUTER',
     data: {
         source,
         target,
@@ -18,4 +18,4 @@ const moveCardOuter = (colId, source, target ) => ({
     },
 });
 
-export default {moveCardInner,moveCardOuter};
+export {moveCardInner,moveCardOuter};

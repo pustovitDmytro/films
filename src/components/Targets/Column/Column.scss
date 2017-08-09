@@ -1,0 +1,10 @@
+@import "../../styles.scss";
+.active{
+  width: 100px;
+  border: yellow 2px solid;
+  background-color: $light-yellow;
+  border: $dark-yellow 3px solid;
+}
+.disabled{
+  width: 20px;
+}

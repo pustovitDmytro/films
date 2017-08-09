@@ -1,0 +1,32 @@
+@import "../styles.scss";
+.card {
+  min-height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  border: $dark-grey 1px solid;
+}
+.toolbar{
+  display: flex;
+}
+.title{
+  font-size: 1.2rem;
+  word-wrap: break-word;
+  font-weight: 300;
+  line-height: 2;
+}
+.button{
+  height: 25px;
+  width: 25px;
+  margin-left: 5px;
+}
+.delete{
+  background: url("../../assets/trash.png") no-repeat;
+  background-size: cover;
+}
+.edit{
+  background: url("../../assets/edit.png") no-repeat;
+  background-size: cover;
+}
