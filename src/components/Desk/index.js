@@ -10,13 +10,11 @@ import AddColumn from '../AddColumn';
 import s from './Desk.scss';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
-import ColumnTarget from './ColumnTarget';
+import ColumnTarget from '../Targets/ColumnTarget';
 
 const Desk = ({columns}) => (
     <div className={s.container}>
-        {
-            console.log("columns Desk",columns,this.props)
-        }
+        <ColumnTarget column={0}/>
         {
             columns.map(elem =>
             <div key={elem.id} className={s.column}>
