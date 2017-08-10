@@ -1,3 +1,10 @@
-.target{
-  border: blueviolet 2px solid;
+@import "../../styles.scss";
+.container{
+  @media #{$phone}{
+    width: 100%;
+  }
+}
+.active{
+  background-color: transparentize($light-yellow, 0.5);
+  border: $dark-yellow 3px solid;
 }

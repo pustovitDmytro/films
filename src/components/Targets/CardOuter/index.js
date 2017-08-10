@@ -5,6 +5,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import s from './CardOuter.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(s);
 
 const outerTarget = {
     drop({colId}, monitor) {
@@ -25,7 +27,7 @@ function collect(connect, monitor) {
 };
 
 const Target = ({children, connectDropTarget, isOver}) => connectDropTarget(
-    <div className={s.target}>
+    <div className={cx(s.container,{active: isOver})}>
         {children}
     </div>
 );

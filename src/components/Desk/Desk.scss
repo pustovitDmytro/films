@@ -3,6 +3,11 @@
 .container{
   display:flex;
   padding: 50px;
+  @media #{$phone}{
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+  }
 }
 .columnTarget{
   width: 100px;
@@ -10,4 +15,7 @@
 }
 .column{
   display: flex;
+  @media #{$phone}{
+    flex-direction: column;
+  }
 }

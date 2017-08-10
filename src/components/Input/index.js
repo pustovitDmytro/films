@@ -39,7 +39,8 @@ class AddItem extends React.Component {
                         type="text"
                         placeholder={this.props.placeholder}
                         value={this.state.name}
-                        onChange={this.nameChange}/>
+                        onChange={this.nameChange}
+                        autoFocus="autoFocus"/>
                 </form>
             </div>
         )

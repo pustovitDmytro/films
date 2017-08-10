@@ -4,9 +4,12 @@
   "description": "Example of WebExtension with webpack",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch",
-    "build": "webpack -- --release",
-    "devserver": "webpack-dev-server"
+    "start:watch": "webpack --watch",
+    "assemble:release": "webpack -- --release",
+    "assemble": "webpack",
+    "build": "webpack -p",
+    "start:http-server": "http-server build -p 7000 -o",
+    "start:dev-server": "webpack-dev-server"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -26,6 +29,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
+    "http-server": "^0.10.0",
     "node-sass": "^4.5.3",
     "pixrem": "^4.0.1",
     "pleeease-filters": "^4.0.0",

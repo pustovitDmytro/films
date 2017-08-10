@@ -62,7 +62,7 @@ class Column extends React.Component {
                     ? <h3 className={s.title}>{name}</h3>
                     : <Input func={renameColumn} placeholder="Input new name.." params={{id: id}}/>
                 }
-                <nav>
+                <nav className={s.toolbar}>
                     <button className={cx(s.button, s.edit)} onClick={this.onRename}/>
                     <button className={cx(s.button, s.delete)} onClick={this.onDelete}/>
                 </nav>

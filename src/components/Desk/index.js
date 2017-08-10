@@ -22,7 +22,7 @@ const Desk = ({columns}) => (
             columns.map(elem =>
             <div key={elem.id} className={s.column}>
                 <CardOuter colId={elem.id}>
-                <Column name={elem.name} id={elem.id}>
+                <Column name={elem.name} id={elem.id} >
                     <CardInner colId={elem.id} cardId={0}/>
                     {
                         elem.cards.map(card =>

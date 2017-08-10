@@ -5,6 +5,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DropTarget } from 'react-dnd';
 import s from './CardInner.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(s);
 
 const innerTarget = {
     drop({colId,cardId}, monitor) {
@@ -13,17 +15,22 @@ const innerTarget = {
             colId,
             target: cardId,
         };
+    },
+    canDrop({colId}, monitor){
+        console.log("innerTarget",colId===monitor.getItem().colId);
+        return colId===monitor.getItem().colId;
     }
 };
 function collect(connect, monitor) {
     return {
         connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver()
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop()
     };
 }
 
-const Target = ({connectDropTarget, isOver}) => connectDropTarget(
-    <div className={s.target}></div>
+const Target = ({connectDropTarget, isOver,canDrop}) => connectDropTarget(
+    <div className={cx({active: isOver&&canDrop, disabled: !isOver||!canDrop})}></div>
 );
 
 Target.propTypes = {

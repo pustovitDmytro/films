@@ -4,12 +4,13 @@ $grey: #a9a9a9;
 $light-grey: #cfcfcf;
 $dark-yellow: #ffff00;
 $light-yellow: #ffff4d;
-$phone: "screen and (min-device-width: 360px) and (max-device-width: 889px)";
+$phone: "screen and (max-device-width: 889px)";
 $pc: "screen and (min-device-width: 890px)";
 
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 button{
   border-color: $dark-grey;

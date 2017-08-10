@@ -1,9 +1,17 @@
 @import "../styles.scss";
 .column{
   background-color: $light-grey;
-  width: 300px;
   border-radius: 5px;
   border: $grey 1px solid;
+  @media #{$pc}{
+    width: 300px;
+    padding: 5px;
+}
+  @media #{$phone}{
+  width: 100%;
+  padding: 10px;
+}
+
 }
 .header{
   min-height: 30px;
@@ -11,9 +19,13 @@
   justify-content: space-between;
   align-items: center;
 }
+.toolbar{
+  display: flex;
+}
 .title{
   font-size: 1.5rem;
   font-weight: 900;
+  word-break: break-all;
   line-height: 2;
 }
 .button{
