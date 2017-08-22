@@ -1,40 +1,20 @@
 /**
  * Created by pusti on 30.07.2017.
  */
-module.exports = function(path,isDebug) {
-    return {
-        module: {
-            rules: [
-                {
-                    test: /\.js$/,
-                    include: path.source,
-                    loader: 'babel-loader',
-                    options: {
-                        cacheDirectory: isDebug,
-                        babelrc: false,
-                        presets: [
-                            [
-                                'env',
-                                {
-                                    targets: {
-                                        uglify: true,
-                                    },
-                                    modules: false,
-                                    useBuiltIns: false,
-                                    debug: false,
-                                },
-                            ],
-                            'stage-2',
-                            'react',
-                            ...(isDebug ? [] : ['react-optimize']),
-                        ],
-                        plugins: [
-                            ...(isDebug ? ['transform-react-jsx-source'] : []),
-                            ...(isDebug ? ['transform-react-jsx-self'] : []),
-                        ],
-                    },
+module.exports = (path, isDebug) => ({
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                include: path.source,
+                exclude: /node_modules/,
+                loader: "babel-loader",
+                options: {
+                    minified: !isDebug,
+                    comments: isDebug,
+
                 }
-            ]
-        },
-    };
-};
+            }
+        ]
+    }
+});

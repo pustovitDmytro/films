@@ -32,8 +32,7 @@ const common = (PATHS,isDebug) => merge([
         },
         plugins: [
             new CleanWebpackPlugin(
-                [PATHS.build],
-                {verbose: true}
+                [PATHS.build]
             ),
             new webpack.DefinePlugin({
                 _DEBUG: isDebug
@@ -41,22 +40,23 @@ const common = (PATHS,isDebug) => merge([
             new webpack.HotModuleReplacementPlugin()
         ]
     },
-    html(PATHS),
-    images(),
-    json(),
 ]);
 
 module.exports = (env = {}) => {
     const isDebug = !env.release;
+    console.log("isDebug",isDebug);
     const PATHS = {
         source: path.join(__dirname, 'src'),
         build: path.join(__dirname, 'build')
     };
 
     return merge([
-        common(PATHS),
+        common(PATHS,isDebug),
         styles(PATHS,isDebug),
-        babel(PATHS,isDebug)
+        babel(PATHS,isDebug),
+        html(PATHS),
+        images(isDebug),
+        json(),
     ]);
 
 };
