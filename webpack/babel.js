@@ -12,7 +12,6 @@ module.exports = (path, isDebug) => ({
                 options: {
                     minified: !isDebug,
                     comments: isDebug,
-
                 }
             }
         ]

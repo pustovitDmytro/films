@@ -7,6 +7,7 @@ import s from './Desk.scss';
 import Film from '../Film';
 import Menu from '../Menu';
 import AddFilm from '../AddFilm';
+import { connect } from 'react-redux';
 
 const Desk = ({films}) => (
     <div>
@@ -27,5 +28,9 @@ const Desk = ({films}) => (
     </div>
     </div>
 );
-
-export default Desk;
+function mapStateToProps (state) {
+    return {
+        films: state.films.array
+    }
+}
+export default connect(mapStateToProps)(Desk);
