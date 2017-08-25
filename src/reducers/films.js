@@ -6,7 +6,7 @@ const films = (state = {}, action) => {
         case 'GET_FILMS':
             return {
                 ...state,
-                films: action.payload
+                array: action.payload
             };
         default:
             return state;

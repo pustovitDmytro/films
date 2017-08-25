@@ -4,6 +4,7 @@
 import React from 'react';
 import Input from '../Input';
 import Formsy from 'formsy-react';
+import s from './AddFilm.scss';
 class AddFilm extends React.Component {
     constructor(props) {
         super(props);
@@ -34,7 +35,7 @@ class AddFilm extends React.Component {
             <div className={s.container}>
                 {
                     (!this.state.form) ?
-                        <button className={s.add} onClick={this.showform()}/> :
+                        <button className={s.add} onClick={this.showform}/> :
                         <Formsy.Form
                             className={s.form}
                             onValidSubmit={this.submit}
@@ -65,13 +66,13 @@ class AddFilm extends React.Component {
                                 placeholder={"Stars"}
                                 required/>
                             <div className={s.buttons}>
-                                <button className={s.button} onClick={this.showform()}>Cancel</button>
+                                <button className={s.button} onClick={this.showform}>Cancel</button>
                                 <input
                                     className={s.button}
                                     name="button"
                                     type="submit"
+                                    value="Submit"
                                     disabled={!this.state.canSubmit}>
-                                    Submit
                                 </input>
                             </div>
                         </Formsy.Form>

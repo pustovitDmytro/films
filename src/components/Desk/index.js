@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import s from './Desk.scss';
 import Film from '../Film';
 import Menu from '../Menu';
+import AddFilm from '../AddFilm';
 
 const Desk = ({films}) => (
     <div>
@@ -22,6 +23,7 @@ const Desk = ({films}) => (
                     src={src}/>
             </div>)
         }
+        <AddFilm/>
     </div>
     </div>
 );

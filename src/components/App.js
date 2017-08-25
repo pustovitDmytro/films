@@ -11,7 +11,7 @@ class App extends React.Component {
         super(props);
     }
     render() {
-        const films = this.props.store.getState().films.films;
+        const films = this.props.store.getState().films.arrray;
         return (
             <Desk films={films}/>
         );
