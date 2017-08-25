@@ -2,6 +2,7 @@
 
 .container{
   display:flex;
+  flex-wrap: wrap;
   padding: 50px;
   @media #{$phone}{
     flex-direction: column;
@@ -9,12 +10,9 @@
     padding: 10px;
   }
 }
-.columnTarget{
-  width: 100px;
-  height: 100%;
-}
 .column{
   display: flex;
+  width: 500px;
   @media #{$phone}{
     flex-direction: column;
   }

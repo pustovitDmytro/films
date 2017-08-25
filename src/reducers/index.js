@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import columns from './columns';
+import films from './films';
 
-const App = combineReducers({
-  columns,
+const rootReducer = combineReducers({
+  films,
 });
 
-export default App;
+export default rootReducer;

@@ -2,32 +2,20 @@
  * Created by pusti on 06.08.2017.
  */
 import React from 'react';
-import setColumns from '../actions/init';
+import {getFilms} from '../actions/load.api';
 import Desk from './Desk';
-import PropTypes from 'prop-types';
+import Router from 'universal-router';
 
-function initColumns(store){
-    store.dispatch(setColumns());
-    const columns=store.getState().columns.columns;
-    console.log("columns",columns);
-    return columns;
-}
 class App extends React.Component {
     constructor(props) {
         super(props);
-        initColumns(props.store);
-    }
-    getChildContext() {
-        return {columns: this.props.store.getState().columns.columns};
     }
     render() {
+        const films = this.props.store.getState().films.films;
         return (
-            <div>
-                <Desk/>
-            </div>
+            <Desk films={films}/>
         );
     }
 }
-App.childContextTypes = {columns: PropTypes.array};
 
 export default App;

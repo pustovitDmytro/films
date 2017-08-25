@@ -1,49 +1,36 @@
 /**
- * Created by pusti on 07.08.2017.
+ * Created by pusti on 24.08.2017.
  */
-/**
- * Created by pusti on 06.08.2017.
- */
+import {HOC} from 'formsy-react';
 import React from 'react';
-import { connect } from 'react-redux';
 import s from './Input.scss';
+import classNames from 'classnames/bind';
+const cx = classNames.bind(s);
 
-class AddItem extends React.Component {
-    constructor(props) {
+class SimpleInput extends React.Component {
+    constructor(props){
         super(props);
-        this.state = {
-            name: ''
-        };
-        this.nameChange = this.nameChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.changeValue = this.changeValue.bind(this);
     }
-    nameChange(event) {
-        this.setState({name: event.target.value});
-    }
-    handleSubmit(event) {
-        const { dispatch, params, func } = this.props;
-        const name  = this.state.name;
-        if (name){
-            console.log("submit", name);
-            dispatch(func(name,params));
-            this.setState({name: ''});
-        }
-        event.preventDefault();
+    changeValue(event) {
+        this.props.setValue(event.currentTarget.value);
     }
     render() {
+        const {type,getValue,placeholder,isValid,name,style} = this.props;
         return (
-            <div>
-                <form className={s.form} onSubmit={this.handleSubmit}>
-                    <input
-                        className={s.text}
-                        type="text"
-                        placeholder={this.props.placeholder}
-                        value={this.state.name}
-                        onChange={this.nameChange}
-                        autoFocus="autoFocus"/>
-                </form>
-            </div>
+            <input
+                className={cx(
+                    {style: style!==undefined},
+                    {valid: isValid()},
+                    {invalid: !isValid()},
+                    {normal: getValue()===undefined}
+                )}
+                name={name}
+                type={type}
+                value={getValue()}
+                placeholder={placeholder}
+                onChange={this.changeValue}/>
         )
-    }
-};
-export default connect()(AddItem);
+    };
+}
+export default HOC(SimpleInput);
