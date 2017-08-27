@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import Formsy from 'formsy-react';
 import searchFilm from '../../../actions/search.films';
 import Input from '../../Input';
+import validators from '../../Input/validators';
 import {getFilms} from '../../../actions/load.api';
 
 class Find extends React.Component{
@@ -34,7 +35,7 @@ class Find extends React.Component{
         dispatch(searchFilm(query,field));
     }
     render() {
-        const {placeholder} = this.props;
+        const {placeholder,field} = this.props;
         return (
                 <Formsy.Form
                     className={s.container}
@@ -44,7 +45,10 @@ class Find extends React.Component{
                     <Input
                         type="text"
                         name="query"
-                        validations="isAlpha"
+                        validations={{
+                            matchRegexp: validators[(field=='title')?'title':'actor']
+                        }}
+                        hint="Input"
                         placeholder={placeholder}/>
                 </Formsy.Form>
         );

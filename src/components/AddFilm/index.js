@@ -57,11 +57,13 @@ class AddFilm extends React.Component {
                                 validations={{
                                     matchRegexp: validators.title
                                 }}
-                                placeholder={"Input film title"}
+                                placeholder={"Film title"}
+                                hint="Type"
                                 required/>
                             <Input
                                 type="text"
                                 name="format"
+                                hint="Type"
                                 validations={{
                                 matchRegexp: validators.format
                             }}
@@ -70,6 +72,7 @@ class AddFilm extends React.Component {
                             <Input
                                 type="number"
                                 name="year"
+                                hint="Type"
                                 validations={{
                                     matchRegexp: validators.year
                                 }}
@@ -78,6 +81,7 @@ class AddFilm extends React.Component {
                             <Input
                                 type="text"
                                 name="stars"
+                                hint="Type"
                                 validations={{
                                     matchRegexp: validators.stars
                                 }}

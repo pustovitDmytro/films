@@ -2,11 +2,8 @@
  * Created by pusti on 23.08.2017.
  */
 import React from 'react';
-import s from './Film.scss';
 import { connect } from 'react-redux';
 import unknown from './film.jpg';
-import cx from "classnames";
-import PropTypes from 'prop-types';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import {deleteFilm} from '../../actions/change.api';

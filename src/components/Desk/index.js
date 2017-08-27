@@ -2,7 +2,6 @@
  * Created by pusti on 06.08.2017.
  */
 import React from 'react';
-import PropTypes from 'prop-types';
 import s from './Desk.scss';
 import Film from '../Film';
 import Menu from '../Menu';

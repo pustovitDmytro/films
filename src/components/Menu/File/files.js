@@ -1,16 +1,30 @@
 /**
  * Created by pusti on 27.08.2017.
  */
+import validators from '../../Input/validators';
+
 export const handleFile = (callback) => (event) => {
     const reader = new FileReader();
     reader.readAsText(event.target.files[0], "UTF-8");
     reader.onload = (e) => sendFile(e.target.result,callback);
 };
 
+export const checkObj = (obj)=>{
+    for (let name in obj){
+        if (!validators[name].test(obj[name]))
+            throw new SyntaxError(`Incorect data: ${obj[name]}`);
+    }
+};
+
 export const sendFile = (content,callback) => {
-    const array = parseFile(content);
-    //array.forEach(file=>callback(file));
-    callback(array);
+    try {
+        const array = parseFile(content);
+        array.forEach(file=>checkObj(file));
+        callback(array);
+    }
+    catch(err){
+        console.log(err);
+    }
 };
 
 export const parseFile = text => {
