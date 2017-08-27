@@ -3,10 +3,16 @@
  */
 import {HOC} from 'formsy-react';
 import React from 'react';
-import s from './Input.scss';
-import classNames from 'classnames/bind';
-const cx = classNames.bind(s);
-
+import TextField from 'material-ui/TextField';
+import {red800, green900} from 'material-ui/styles/colors';
+const styles = {
+    valid: {
+        color: green900,
+    },
+    invalid: {
+        color: red800,
+    }
+};
 class SimpleInput extends React.Component {
     constructor(props){
         super(props);
@@ -16,19 +22,16 @@ class SimpleInput extends React.Component {
         this.props.setValue(event.currentTarget.value);
     }
     render() {
-        const {type,getValue,placeholder,isValid,name,style} = this.props;
+        const {type,getValue,hint,placeholder,isValid,name,style} = this.props;
         return (
-            <input
-                className={cx(
-                    {style: style!==undefined},
-                    {valid: isValid()},
-                    {invalid: !isValid()},
-                    {normal: getValue()===undefined}
-                )}
+            <TextField
+                floatingLabelFocusStyle={styles[isValid()?'valid':'invalid']}
+                hintText={hint}
+                floatingLabelText={placeholder}
+                fullWidth={true}
                 name={name}
                 type={type}
-                value={getValue()}
-                placeholder={placeholder}
+                value={getValue()||''}
                 onChange={this.changeValue}/>
         )
     };

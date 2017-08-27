@@ -6,21 +6,24 @@ class Api {
   constructor(){
     this.domain = 'http://localhost:8080';
   }
-  fetch(url, params = {}){
+  fetch(url, params={}){
     return fetch(url, params);
   }
   get(url, params={}){
     return this.fetch(this.domain +'/'+ url,params);
   }
   post(url, data){
-  let formdata = new FormData(data);
-  return this.fetch(this.domain +'/' + url, {
-    method: 'POST',
-    body: formdata
-  });
-}
+    let formData = new FormData();
+    for(const name in data) {
+      formData.set(name, data[name]);
+    }
+    return this.fetch(this.domain +'/' + url, {
+      method: 'POST',
+      body: formData
+    });
+  }
   delete(url, id){
-    return this.fetch(this.domain +'/' + url+'/'+id, {
+    return this.fetch(`${this.domain}/${url}${id}`, {
       method: 'DELETE'
     });
   }

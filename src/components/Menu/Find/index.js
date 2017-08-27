@@ -29,17 +29,15 @@ class Find extends React.Component{
             canSubmit: false
         });
     }
-    submit({query}) {
+    submit({query=''}) {
         const {field,dispatch} = this.props;
-        if (query)
-            dispatch(searchFilm(query,field));
-        else dispatch(getFilms());
+        dispatch(searchFilm(query,field));
     }
     render() {
         const {placeholder} = this.props;
         return (
                 <Formsy.Form
-                    className={s.form}
+                    className={s.container}
                     onValidSubmit={this.submit}
                     onValid={this.enableButton}
                     onInvalid={this.disableButton}>
@@ -48,11 +46,6 @@ class Find extends React.Component{
                         name="query"
                         validations="isAlpha"
                         placeholder={placeholder}/>
-                    <input
-                        className={s.submit}
-                        name="button"
-                        type="submit"
-                        disabled={!this.state.canSubmit}/>
                 </Formsy.Form>
         );
     }

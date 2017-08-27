@@ -5,22 +5,27 @@ import React from 'react';
 import s from './Menu.scss';
 import cx from "classnames";
 import PropTypes from 'prop-types';
-import sortFilm from '../../actions/sort.films';
 import Find from './Find';
+import File from './File';
+import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import Avatar from 'material-ui/Avatar';
+import unknown from './unknown.png';
+import Sort from './Sort';
 
-const sort = (order) => () => sortFilm(order,"title");
 
-const Menu = ({num}) => (
-    <div className={s.container}>
-        <div>Sort</div>
-        <div className={s.button}>
-            <button onClick={sort(true)}>&#8593;</button>
-            <button onClick={sort(false)}>&#8595;</button>
-        </div>
-        <Find field="title" placeholder="input title"/>
-        <Find field="stars" placeholder="input stars"/>
-        <button>load from file</button>
-    </div>
+const Menu = ({num,src,user}) => (
+    <Toolbar className={s.container}>
+        <ToolbarGroup>
+            <Avatar src={src||unknown} />
+            <ToolbarTitle text={`${user||'User'}, ${num} films`}/>
+        </ToolbarGroup>
+        <ToolbarGroup lastChild={true}>
+            <Sort/>
+            <Find field="title" placeholder="input title"/>
+            <Find field="stars" placeholder="input stars"/>
+            <File/>
+        </ToolbarGroup>
+    </Toolbar>
 );
 
 export default Menu;

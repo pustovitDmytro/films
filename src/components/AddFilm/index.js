@@ -3,8 +3,16 @@
  */
 import React from 'react';
 import Input from '../Input';
+import validators from '../Input/validators';
+import { connect } from 'react-redux';
+import Paper from 'material-ui/Paper';
 import Formsy from 'formsy-react';
+import IconButton from 'material-ui/IconButton';
+import AddBtn from 'material-ui/svg-icons/content/add-circle-outline';
+import RaisedButton from 'material-ui/RaisedButton';
 import s from './AddFilm.scss';
+import {addFilm} from '../../actions/change.api';
+
 class AddFilm extends React.Component {
     constructor(props) {
         super(props);
@@ -26,60 +34,70 @@ class AddFilm extends React.Component {
     }
     submit(model) {
         console.log("submit",model);
+        this.props.dispatch(addFilm(model));
     }
     showform(){
         this.setState({form: !this.state.form});
     }
     render() {
         return (
-            <div className={s.container}>
+            <Paper zDepth={2} className={s.center}>
                 {
                     (!this.state.form) ?
-                        <button className={s.add} onClick={this.showform}/> :
+                    <IconButton  onClick={this.showform} tooltip="Add new film">
+                        <AddBtn />
+                    </IconButton>:
                         <Formsy.Form
-                            className={s.form}
                             onValidSubmit={this.submit}
                             onValid={this.enableButton}
                             onInvalid={this.disableButton}>
                             <Input
                                 type="text"
                                 name="title"
-                                validations="isAlpha"
+                                validations={{
+                                    matchRegexp: validators.title
+                                }}
                                 placeholder={"Input film title"}
                                 required/>
                             <Input
                                 type="text"
                                 name="format"
-                                validations="isAlpha"
+                                validations={{
+                                matchRegexp: validators.format
+                            }}
                                 placeholder={"Format"}
                                 required/>
                             <Input
-                                type="text"
+                                type="number"
                                 name="year"
-                                validations="isAlpha"
+                                validations={{
+                                    matchRegexp: validators.year
+                                }}
                                 placeholder={"Release year"}
                                 required/>
                             <Input
                                 type="text"
                                 name="stars"
-                                validations="isAlpha"
+                                validations={{
+                                    matchRegexp: validators.stars
+                                }}
                                 placeholder={"Stars"}
                                 required/>
-                            <div className={s.buttons}>
-                                <button className={s.button} onClick={this.showform}>Cancel</button>
-                                <input
-                                    className={s.button}
-                                    name="button"
+                            <div className={s.center}>
+                                <RaisedButton
+                                    label="Cancel"
+                                    onClick={this.showform}/>
+                                <RaisedButton
+                                    label="Submit"
+                                    primary={true}
                                     type="submit"
-                                    value="Submit"
-                                    disabled={!this.state.canSubmit}>
-                                </input>
+                                    disabled={!this.state.canSubmit}/>
                             </div>
                         </Formsy.Form>
                 }
-            </div>
+            </Paper>
         );
     }
 }
 
-export default AddFilm;
+export default connect()(AddFilm);

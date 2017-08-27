@@ -10,8 +10,13 @@ class IndexApi extends Api {
   addFilm(data){
     return this.post(`films/`,data);
   }
+  addMany(array){
+    return Promise.all(
+        array.map(film => this.addFilm(film))
+    )
+  }
   deleteFilm(id){
-    return this.get(`films/`,id);
+    return this.delete(`films/`,id);
   }
 }
 

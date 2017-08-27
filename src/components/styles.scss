@@ -1,11 +1,8 @@
-$background: #6495ed;
-$dark-grey: #838383;
-$grey: #a9a9a9;
-$light-grey: #cfcfcf;
-$dark-yellow: #ffff00;
-$light-yellow: #ffff4d;
+$background: #ffffff;
 $phone: "screen and (max-device-width: 889px)";
 $pc: "screen and (min-device-width: 890px)";
+$small-pc: "screen and (min-device-width: 890px) and (max-device-width: 1999px)";
+$big-pc: "screen and (min-device-width: 2000px)";
 
 *{
   margin: 0;
@@ -13,8 +10,6 @@ $pc: "screen and (min-device-width: 890px)";
   box-sizing: border-box;
 }
 button{
-  border-color: $dark-grey;
-  border-radius: 3px;
   cursor: pointer;
 }
 body{
