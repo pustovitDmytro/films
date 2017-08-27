@@ -23,5 +23,5 @@ yarn assemble
 ```
 to build in debug mode.
 
-###Note
+##Note
 note that first of all you have to launch [nodeJS API](https://github.com/pustovitDmytro/films-api)
