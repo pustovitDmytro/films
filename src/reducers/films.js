@@ -4,9 +4,9 @@
 const sortFilms = (films, {order=true,field}) => {
     films.sort((a, b)=>
         (order) ?
-            (a[field] > b[field]) ? 1 : -1
+            (a[field].toUpperCase() > b[field].toUpperCase()) ? 1 : -1
             :
-            (a[field] < b[field]) ? 1 : -1
+            (a[field].toUpperCase() < b[field].toUpperCase()) ? 1 : -1
     );
     return films.slice();
 };
@@ -36,6 +36,11 @@ const films = (state = {}, action) => {
             return {
                 ...state,
                 error: action.error
+            };
+        case 'SET_MESSAGE':
+            return {
+                ...state,
+                message: action.message
             };
         default:
             return state;

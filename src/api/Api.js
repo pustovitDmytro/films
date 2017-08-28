@@ -8,6 +8,12 @@ class Api {
   }
   fetch(url, params={}){
     return fetch(url, params);
+    //     .then((response)=>{
+    //   if (!response.ok) {
+    //     throw Error(response.statusText);
+    //   }
+    //   return response;
+    // });
   }
   get(url, params={}){
     return this.fetch(this.domain +'/'+ url,params);

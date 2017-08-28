@@ -5,6 +5,7 @@ import React from 'react';
 import s from './File.scss';
 import { connect } from 'react-redux';
 import {addMany} from '../../../actions/change.api';
+import show from '../../../actions/set.message';
 import {handleFile} from './files';
 import Upload from 'material-ui/svg-icons/file/file-upload';
 
@@ -15,7 +16,17 @@ class File extends React.Component{
         this.send = this.send.bind(this);
     }
     send(film){
-        return this.props.dispatch(addMany(film));
+        const {dispatch} = this.props;
+        dispatch(addMany(film)).then(
+            arr=>{
+                let stat = arr.reduce((obj,{status}) => {
+                    obj[status]++;
+                    return obj;
+                },{'201':0,'409':0});
+                dispatch(show(
+                    stat['409']>0?`${stat['201']} films added, ${stat['409']} films duplicated`:`${stat['201']} films added`
+                ));
+            })
     }
     render() {
         return (

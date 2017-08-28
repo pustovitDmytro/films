@@ -7,6 +7,7 @@ import unknown from './film.jpg';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import {deleteFilm} from '../../actions/change.api';
+import setMessage from '../../actions/set.message';
 
 class Film extends React.Component {
 
@@ -29,9 +30,11 @@ class Film extends React.Component {
         this.setState({expanded: false});
     };
 
-    delete = () => {
+    handleDelete = () => {
         const {dispatch,id}=this.props;
-        dispatch(deleteFilm(id));
+        dispatch(deleteFilm(id)).then(
+            ({status}) => dispatch(setMessage(status===200?'Film was successfully deleted':'Error, try it later'))
+        );
     };
 
     render() {
@@ -42,17 +45,14 @@ class Film extends React.Component {
                     title={title}
                     subtitle={year+" year"}
                     actAsExpander={true}
-                    showExpandableButton={true}
-                />
+                    showExpandableButton={true}/>
                 <CardMedia
-                    expandable={true}
                     overlay={
                         <CardTitle
                             title={title}
-                            subtitle={year+" year"}
-                        />
+                            subtitle={year + " year"}/>
                     }
-                >
+                    expandable={true}>
                     <img src={src||unknown} alt={title} />
                 </CardMedia>
                 <CardTitle title={`${title} (${year})`} subtitle={`available on ${format}`} expandable={true} />
@@ -63,7 +63,7 @@ class Film extends React.Component {
                 <CardActions>
                     <FlatButton label="Expand" onClick={this.handleExpand} />
                     <FlatButton label="Reduce" onClick={this.handleReduce} />
-                    <FlatButton label="Delete" onClick={this.delete} />
+                    <FlatButton label="Delete" onClick={this.handleDelete} />
                 </CardActions>
             </Card>
         );

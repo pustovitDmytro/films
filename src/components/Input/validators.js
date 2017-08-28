@@ -1,11 +1,14 @@
 /**
  * Created by pusti on 27.08.2017.
  */
+
+const generateYearRegex  = ([year,decade]) => new RegExp(`^(19\\d{2})|20[0-${decade-1}]\\d|20${decade}[0-${year}]$`);
+
 const validators = {
     title:/^[\s\w,\.-]{1,50}$/,
-    year:/^(?:19|20)\d{2}$/,
-    format:/^[\w-]{0,15}$/,
-    stars:/^[\s\w,-]{1,200}$/,
+    year: generateYearRegex(new Date().getFullYear().toString().split("").reverse()),
+    format:/^[\w-]{2,15}$/,
+    stars:/^[\s\w,-]{3,200}$/,
     actor:/^[\w-]{0,20}$/
 };
 export default validators;

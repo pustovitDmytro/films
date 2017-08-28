@@ -12,7 +12,9 @@ class IndexApi extends Api {
   }
   addMany(array){
     return Promise.all(
-        array.map(film => this.addFilm(film))
+        array.map(film =>
+            this.addFilm(film)
+        )
     )
   }
   deleteFilm(id){

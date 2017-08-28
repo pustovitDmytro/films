@@ -12,6 +12,7 @@ import AddBtn from 'material-ui/svg-icons/content/add-circle-outline';
 import RaisedButton from 'material-ui/RaisedButton';
 import s from './AddFilm.scss';
 import {addFilm} from '../../actions/change.api';
+import show from '../../actions/set.message';
 
 class AddFilm extends React.Component {
     constructor(props) {
@@ -33,8 +34,18 @@ class AddFilm extends React.Component {
         });
     }
     submit(model) {
-        console.log("submit",model);
-        this.props.dispatch(addFilm(model));
+        const {dispatch} = this.props;
+        dispatch(addFilm(model)).then(
+            ({status})=> {
+                switch (status){
+                    case 201:
+                        this.showform();
+                        return dispatch(show("Film added"));
+                    case 409:
+                        return dispatch(show("Film already exist"));
+                }
+            }
+        )
     }
     showform(){
         this.setState({form: !this.state.form});

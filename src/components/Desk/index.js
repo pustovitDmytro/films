@@ -6,9 +6,10 @@ import s from './Desk.scss';
 import Film from '../Film';
 import Menu from '../Menu';
 import AddFilm from '../AddFilm'
+import Snackbar from 'material-ui/Snackbar';
 import { connect } from 'react-redux';
 
-const Desk = ({films}) => (
+const Desk = ({films,message}) => (
     <div className={s.container}>
         <Menu num={films.length}/>
         <div className={s.cards}>
@@ -28,11 +29,16 @@ const Desk = ({films}) => (
                 <AddFilm/>
             </div>
         </div>
+        <Snackbar
+            open={!!(message&&message.length)}
+            message={message||''}
+            autoHideDuration={2000}/>
     </div>
 );
 function mapStateToProps (state) {
     return {
-        films: state.films.array
+        films: state.films.array,
+        message: state.films.message
     }
 }
 export default connect(mapStateToProps)(Desk);

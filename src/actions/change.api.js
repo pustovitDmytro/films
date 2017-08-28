@@ -10,7 +10,11 @@ const change = (API) =>
     (method, params = '') =>
         (dispatch) =>
             API[method].call(API, params)
-                .then( ()=> dispatch(getFilms())
+                .then( response =>
+                    new Promise( (resolve, reject)=>{
+                        dispatch(getFilms());
+                        resolve(response);
+                    })
                 )
                 .catch(error => {
                     dispatch({
