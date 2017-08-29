@@ -17,11 +17,11 @@ const change = (API) =>
                     })
                 )
                 .catch(error => {
+                    console.log("change",error);
                     dispatch({
                         type: "API_ERROR",
                         error,
                     });
-                    console.log(error)
                 });
 
 export const addMany = (films) => change(Api)('addMany',films);

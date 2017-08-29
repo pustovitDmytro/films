@@ -7,21 +7,23 @@ class Api {
     this.domain = 'http://localhost:8080';
   }
   fetch(url, params={}){
-    return fetch(url, params);
-    //     .then((response)=>{
-    //   if (!response.ok) {
-    //     throw Error(response.statusText);
-    //   }
-    //   return response;
-    // });
+    return fetch(url, params)
+        .then((response)=>{
+      if (!response.ok) {
+        throw response.status;
+      }
+      return response;
+    });
   }
   get(url, params={}){
     return this.fetch(this.domain +'/'+ url,params);
   }
   post(url, data){
     let formData = new FormData();
-    for(const name in data) {
-      formData.set(name, data[name]);
+    for(const key in data) {
+        if (!data.hasOwnProperty(key))
+            continue;
+        formData.set(key, data[key]);
     }
     return this.fetch(this.domain +'/' + url, {
       method: 'POST',

@@ -9,7 +9,7 @@ import AddFilm from '../AddFilm'
 import Snackbar from 'material-ui/Snackbar';
 import { connect } from 'react-redux';
 
-const Desk = ({films,message}) => (
+const Desk = ({films,message,dispatch}) => (
     <div className={s.container}>
         <Menu num={films.length}/>
         <div className={s.cards}>

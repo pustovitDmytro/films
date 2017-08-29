@@ -41,7 +41,7 @@ class AddFilm extends React.Component {
                     case 201:
                         this.showform();
                         return dispatch(show("Film added"));
-                    case 409:
+                    case 210:
                         return dispatch(show("Film already exist"));
                 }
             }

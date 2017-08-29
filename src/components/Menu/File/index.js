@@ -19,14 +19,14 @@ class File extends React.Component{
         const {dispatch} = this.props;
         dispatch(addMany(film)).then(
             arr=>{
-                let stat = arr.reduce((obj,{status}) => {
+                let {'210':duplicate,'201':ok} = arr.reduce((obj,{status}) => {
                     obj[status]++;
                     return obj;
-                },{'201':0,'409':0});
+                },{'201':0,'210':0});
                 dispatch(show(
-                    stat['409']>0?`${stat['201']} films added, ${stat['409']} films duplicated`:`${stat['201']} films added`
+                    duplicate>0?`${ok} films added, ${duplicate} films duplicated`:`${ok} films added`
                 ));
-            })
+            }).catch(err => console.log(err))
     }
     render() {
         return (

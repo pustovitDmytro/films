@@ -14,6 +14,8 @@ const sortFilms = (films, {order=true,field}) => {
 const searchFilms = (films, {field,query}) =>
     films.filter(elem=>~(elem[field].toUpperCase()).search(query.toUpperCase()));
 
+const errorMessage = status => new String(`Some error occurred! Status: ${status}`);
+
 const films = (state = {}, action) => {
     switch (action.type) {
         case 'GET_FILMS':
@@ -25,7 +27,7 @@ const films = (state = {}, action) => {
         case 'SORT_FILMS':
             return {
                 ...state,
-                array: sortFilms(state.static,action.payload)
+                array: sortFilms(state.array,action.payload)
             };
         case 'SEARCH_FILMS':
             return {
@@ -35,7 +37,8 @@ const films = (state = {}, action) => {
         case 'API_ERROR':
             return {
                 ...state,
-                error: action.error
+                error: action.error,
+                message: errorMessage(action.error)
             };
         case 'SET_MESSAGE':
             return {

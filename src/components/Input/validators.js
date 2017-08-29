@@ -8,7 +8,7 @@ const validators = {
     title:/^[\s\w,\.-]{1,50}$/,
     year: generateYearRegex(new Date().getFullYear().toString().split("").reverse()),
     format:/^[\w-]{2,15}$/,
-    stars:/^[\s\w,-]{3,200}$/,
-    actor:/^[\w-]{0,20}$/
+    stars:/^[\sa-zA-Z,-]{3,200}$/,
+    actor:/^[a-zA-Z-]{0,20}$/
 };
 export default validators;

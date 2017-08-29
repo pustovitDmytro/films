@@ -17,6 +17,7 @@ const load = (API) =>
                     })
                 )
                 .catch(error => {
+                    console.log(error);
                     dispatch({
                         type,
                         payload: [],
@@ -25,7 +26,6 @@ const load = (API) =>
                         type: "API_ERROR",
                         error,
                     });
-                    console.log(error)
                 });
 
 export const getFilms = () => load(Api)('getFilms', 'GET_FILMS');

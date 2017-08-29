@@ -33,8 +33,9 @@ class Film extends React.Component {
     handleDelete = () => {
         const {dispatch,id}=this.props;
         dispatch(deleteFilm(id)).then(
-            ({status}) => dispatch(setMessage(status===200?'Film was successfully deleted':'Error, try it later'))
-        );
+            ({status}) =>
+                dispatch(setMessage(status===200?'Film was successfully deleted':'Try to reload'))
+        ).catch(err => console.log(err));
     };
 
     render() {
